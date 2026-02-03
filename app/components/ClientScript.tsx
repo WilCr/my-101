@@ -28,7 +28,7 @@ export default function ClientScript() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const href = this.getAttribute('href');
+                const href = anchor.getAttribute('href');
                 if (href) {
                     const target = document.querySelector(href);
                     if (target) {
@@ -206,8 +206,9 @@ export default function ClientScript() {
             const scrollY = window.pageYOffset;
             
             sections.forEach(section => {
-                const sectionHeight = section.offsetHeight;
-                const sectionTop = section.offsetTop - 100;
+                const htmlSection = section as HTMLElement;
+                const sectionHeight = htmlSection.offsetHeight;
+                const sectionTop = htmlSection.offsetTop - 100;
                 const sectionId = section.getAttribute('id');
                 
                 if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
